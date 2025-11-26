@@ -1,0 +1,25 @@
+# Build artifacts
+*.o
+*.elf
+*.hex
+*.bin
+*.map
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*~
+
+# Logs
+*.log
+
+# Environment files
+.env
