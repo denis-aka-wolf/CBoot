@@ -27,6 +27,6 @@ clean:
 	rm -f $(OBJECTS) $(TARGET)
 
 install: $(TARGET)
-	cp $(TARGET) /boot/efi/EFI/BOOT/
+	cp $(TARGET) $(DESTDIR)/boot/efi/EFI/BOOT/
 
 .PHONY: all clean install
