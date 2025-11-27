@@ -46,6 +46,18 @@ To remove generated files, use:
 make clean
 ```
 
+## Makefile Targets
+
+The project contains the following targets in Makefile:
+
+- `all` - Build the project (default)
+- `clean` - Clean generated files
+- `install` - Install the executable file
+- `uninstall` - Uninstall the executable file
+- `debug` - Debug build with `-DDEBUG` option
+- `release` - Release build with `-DNDEBUG` option
+- `help` - Display help on targets and variables
+
 ## Requirements
 
 - GCC (GNU Compiler Collection)
@@ -63,6 +75,14 @@ git clone https://git.code.sf.net/p/gnu-efi/code gnu-efi
 cd ./gnu-efi/
 make
 ```
+
+## Makefile Variables
+
+The project supports the following environment variables:
+
+- `ARCH` - Architecture (x86_64, ia32, etc.). Default: x86_64
+- `TOOLCHAIN_PREFIX` - Toolchain prefix (default: x86_64-linux-gnu-)
+- `DESTDIR` - Root directory for installation (default: /)
 
 ## License
 

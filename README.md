@@ -46,6 +46,18 @@ make install DESTDIR=/media/user/EFI
 make clean
 ```
 
+## Цели Makefile
+
+Проект содержит следующие цели в Makefile:
+
+- `all` - Сборка проекта (по умолчанию)
+- `clean` - Очистка сгенерированных файлов
+- `install` - Установка исполняемого файла
+- `uninstall` - Удаление исполняемого файла
+- `debug` - Debug сборка с опцией `-DDEBUG`
+- `release` - Release сборка с опцией `-DNDEBUG`
+- `help` - Вывод справки по целям и переменным
+
 ## Требования
 
 - GCC (GNU Compiler Collection)
@@ -63,6 +75,14 @@ git clone https://git.code.sf.net/p/gnu-efi/code gnu-efi
 cd ./gnu-efi/
 make
 ```
+
+## Переменные Makefile
+
+Проект поддерживает следующие переменные окружения:
+
+- `ARCH` - Архитектура (x86_64, ia32 и т.д.). По умолчанию: x86_64
+- `TOOLCHAIN_PREFIX` - Префикс инструментария (по умолчанию: x86_64-linux-gnu-)
+- `DESTDIR` - Корневой каталог для установки (по умолчанию: /)
 
 ## Лицензия
 
