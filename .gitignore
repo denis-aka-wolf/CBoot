@@ -24,3 +24,6 @@ Thumbs.db
 
 # Environment files
 .env
+
+# External dependencies
+gnu-efi/
