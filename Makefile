@@ -11,6 +11,8 @@ OBJCOPY = objcopy
 
 # Путь к локальному GNU-EFI (если скомпилирован в ./gnu-efi)
 LOCAL_EFI = ./gnu-efi/
+INCLUDE_DIR ?= ./include
+BUILDS_DIR = ./build
 
 # Проверка наличия GNU-EFI
 ifeq ($(wildcard $(LOCAL_EFI)),)
@@ -44,22 +46,25 @@ endif
 # Исходные файлы
 SOURCES = main.c
 OBJECTS = $(SOURCES:.c=.o)
+
 # Имя выходного файла для загрузчика UEFI
 TARGET = BOOTX64.EFI
 SO_TARGET = $(TARGET:.efi=.so)
 
 # Флаги компиляции
 CFLAGS = -I$(EFI_INC_DIR) \
+	-I$(INCLUDE_DIR) \
 	-fpic -ffreestanding -fno-stack-protector -fno-stack-check \
 	-fshort-wchar -mno-red-zone -maccumulate-outgoing-args
 
 
 # Флаги линковки
+boot.o -o boot.so -lgnuefi -lefi
 LDFLAGS = -shared -Bsymbolic \
-	-L$(EFI_LIB_DIR) -L$(EFI_GNUEFI_DIR) \
+	-L $(EFI_LIB_DIR) -L $(EFI_GNUEFI_DIR) \
 	-T $(EFI_LDS_FILE) \
 	$(EFI_CRT0_FILE) \
-	$(OBJECTS) \
+	$(OBJECTS_BUILD) \
 	-lgnuefi -lefi
 
 # Флаги objcopy для создания EFI файла
@@ -77,8 +82,8 @@ build:
 	mkdir -p build
 
 # Сборка целевого файла EFI
-$(TARGET): build $(OBJECTS)
-	$(LD) $(LDFLAGS) -o $@ $^
+$(TARGET): build $(OBJECTS_BUILD)
+	$(LD) $(LDFLAGS) -o $@ $(OBJECTS_BUILD)
 
 # Компиляция исходных файлов в объектные файлы
 build/%.o: src/%.c
@@ -95,6 +100,7 @@ build/%.o: src/%.c
 # Очистка
 clean:
 	rm -f *.o *.so *.efi $(TARGET)
+	rm -rf build/
 
 # Установка
 install:
@@ -135,7 +141,7 @@ help:
 	@echo "  DESTDIR       - Корневой каталог для установки"
 
 # Зависимости (генерируются автоматически)
--include $(OBJECTS:.o=.d)
+-include $(OBJECTS_BUILD:.o=.d)
 
 # Генерация зависимостей
 %.d: %.c
