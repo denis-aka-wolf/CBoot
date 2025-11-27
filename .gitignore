@@ -4,6 +4,7 @@
 *.hex
 *.bin
 *.map
+*.efi
 
 # IDE files
 .vscode/

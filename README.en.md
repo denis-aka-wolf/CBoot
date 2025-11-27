@@ -50,7 +50,19 @@ make clean
 
 - GCC (GNU Compiler Collection)
 - UEFI SDK (for compilation)
+- GNU-EFI (for compilation)
 - Make
+
+## GNU-EFI Installation
+
+Before compiling the project, you need to install GNU-EFI. Installation instructions:
+
+```bash
+mkdir gnu-efi
+git clone https://git.code.sf.net/p/gnu-efi/code gnu-efi
+cd ./gnu-efi/
+make
+```
 
 ## License
 

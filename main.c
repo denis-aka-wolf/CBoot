@@ -2,7 +2,9 @@
 #include <efilib.h>
 #include "uefi_config.h"
 
-EFI_STATUS
+EFI_STATUS 
+EFIAPI
+
 efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
 {
     EFI_STATUS Status;
