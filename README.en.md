@@ -1,9 +1,26 @@
 # UEFI Bootloader Project
 
-*Documentation in English*  
+*Documentation in English*
 [Документация на русском языке](README.md)
 
 This project is a simple UEFI bootloader written in C. It is designed to work in UEFI environment and can be used as a base for creating custom UEFI applications.
+
+## Project Structure
+
+```
+.
+├── Makefile
+├── README.md
+├── README.en.md
+├── LICENSE
+├── src/          # Source files
+│   └── main.c
+├── include/      # Header files
+│   └── uefi_config.h
+├── build/        # Build files (generated)
+├── gnu-efi/      # GNU-EFI (not in repository)
+└── docs/         # Documentation
+```
 
 ## Building the Project
 
@@ -23,7 +40,7 @@ To install the executable file to a UEFI device, you can use the `install` targe
 make install
 ```
 
-By default, the file will be installed to `/boot/efi/EFI/BOOT/`.
+By default, the file will be installed to `/EFI/BOOT/`.
 
 To install the file to another device, use the `DESTDIR` environment variable:
 
@@ -34,8 +51,7 @@ make install DESTDIR=/path/to/device
 Examples:
 ```bash
 make install DESTDIR=/mnt/usb
-make install DESTDIR=/dev/sda2
-make install DESTDIR=/media/user/EFI
+make install DESTDIR=/media/myusb
 ```
 
 ## Cleaning
@@ -58,6 +74,14 @@ The project contains the following targets in Makefile:
 - `release` - Release build with `-DNDEBUG` option
 - `help` - Display help on targets and variables
 
+## Makefile Variables
+
+The project supports the following environment variables:
+
+- `ARCH` - Architecture (x86_64, ia32, etc.). Default: x86_64
+- `TOOLCHAIN_PREFIX` - Toolchain prefix (default: x86_64-linux-gnu-)
+- `DESTDIR` - Root directory for installation (default: /)
+
 ## Requirements
 
 - GCC (GNU Compiler Collection)
@@ -75,14 +99,6 @@ git clone https://git.code.sf.net/p/gnu-efi/code gnu-efi
 cd ./gnu-efi/
 make
 ```
-
-## Makefile Variables
-
-The project supports the following environment variables:
-
-- `ARCH` - Architecture (x86_64, ia32, etc.). Default: x86_64
-- `TOOLCHAIN_PREFIX` - Toolchain prefix (default: x86_64-linux-gnu-)
-- `DESTDIR` - Root directory for installation (default: /)
 
 ## License
 

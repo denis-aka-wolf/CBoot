@@ -40,7 +40,7 @@ make
 make install
 ```
 
-По умолчанию файл будет установлен в `/boot/efi/EFI/BOOT/`.
+По умолчанию файл будет установлен в `/EFI/BOOT/`.
 
 Чтобы установить файл на другой носитель, используйте переменную окружения `DESTDIR`:
 
@@ -51,8 +51,7 @@ make install DESTDIR=/путь/к/носителю
 Примеры:
 ```bash
 make install DESTDIR=/mnt/usb
-make install DESTDIR=/dev/sda2
-make install DESTDIR=/media/user/EFI
+make install DESTDIR=/media/myusb
 ```
 
 ## Очистка
@@ -75,6 +74,14 @@ make clean
 - `release` - Release сборка с опцией `-DNDEBUG`
 - `help` - Вывод справки по целям и переменным
 
+## Переменные Makefile
+
+Проект поддерживает следующие переменные окружения:
+
+- `ARCH` - Архитектура (x86_64, ia32 и т.д.). По умолчанию: x86_64
+- `TOOLCHAIN_PREFIX` - Префикс инструментария (по умолчанию: x86_64-linux-gnu-)
+- `DESTDIR` - Корневой каталог для установки (по умолчанию: /)
+
 ## Требования
 
 - GCC (GNU Compiler Collection)
@@ -92,14 +99,6 @@ git clone https://git.code.sf.net/p/gnu-efi/code gnu-efi
 cd ./gnu-efi/
 make
 ```
-
-## Переменные Makefile
-
-Проект поддерживает следующие переменные окружения:
-
-- `ARCH` - Архитектура (x86_64, ia32 и т.д.). По умолчанию: x86_64
-- `TOOLCHAIN_PREFIX` - Префикс инструментария (по умолчанию: x86_64-linux-gnu-)
-- `DESTDIR` - Корневой каталог для установки (по умолчанию: /)
 
 ## Лицензия
 
