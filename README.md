@@ -34,6 +34,7 @@ make install DESTDIR=/путь/к/носителю
 Примеры:
 ```bash
 make install DESTDIR=/mnt/usb
+make install DESTDIR=/dev/sda2
 make install DESTDIR=/media/user/EFI
 ```
 
