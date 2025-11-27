@@ -74,12 +74,16 @@ OBJFLAGS = -j .text -j .sdata -j .rodata -j .dynamic \
 
 all: $(TARGET)
 
+# Создание каталога build, если он не существует
+build:
+	mkdir -p build
+
 # Сборка целевого файла EFI
-$(TARGET): $(OBJECTS)
+$(TARGET): build $(OBJECTS)
 	$(LD) $(LDFLAGS) -o $@ $^
 
 # Компиляция исходных файлов в объектные файлы
-%.o: %.c
+build/%.o: src/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Создание .so файла
