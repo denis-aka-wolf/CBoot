@@ -79,7 +79,6 @@ The project contains the following targets in Makefile:
 The project supports the following environment variables:
 
 - `ARCH` - Architecture (x86_64, ia32, etc.). Default: x86_64
-- `TOOLCHAIN_PREFIX` - Toolchain prefix (default: x86_64-linux-gnu-)
 - `DESTDIR` - Root directory for installation (default: /)
 
 ## Requirements

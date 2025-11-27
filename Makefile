@@ -3,12 +3,11 @@
 
 # Определение архитектуры
 ARCH ?= x86_64
-TOOLCHAIN_PREFIX ?= x86_64-linux-gnu-
 
 # Компиляторы
-CC = $(TOOLCHAIN_PREFIX)gcc
-LD = $(TOOLCHAIN_PREFIX)ld
-OBJCOPY = $(TOOLCHAIN_PREFIX)objcopy
+CC = gcc
+LD = ld
+OBJCOPY = objcopy
 
 # Путь к локальному GNU-EFI (если скомпилирован в ./gnu-efi)
 LOCAL_EFI = ./gnu-efi/
@@ -50,11 +49,10 @@ TARGET = BOOTX64.EFI
 SO_TARGET = $(TARGET:.efi=.so)
 
 # Флаги компиляции
-CFLAGS = -Wall -Wextra -O2 -g \
+CFLAGS = -I$(EFI_INC_DIR) \
 	-fpic -ffreestanding -fno-stack-protector -fno-stack-check \
-	-fshort-wchar -mno-red-zone -maccumulate-outgoing-args \
-	-nostdinc -I$(EFI_INC_DIR) \
-	-DGNU_EFI_USE_MS_ABI
+	-fshort-wchar -mno-red-zone -maccumulate-outgoing-args
+
 
 # Флаги линковки
 LDFLAGS = -shared -Bsymbolic \
@@ -134,7 +132,6 @@ help:
 	@echo ""
 	@echo "Переменные:"
 	@echo "  ARCH          - Архитектура (x86_64, ia32 и т.д.)"
-	@echo "  TOOLCHAIN_PREFIX - Префикс инструментария (по умолчанию x86_64-linux-gnu-)"
 	@echo "  DESTDIR       - Корневой каталог для установки"
 
 # Зависимости (генерируются автоматически)
