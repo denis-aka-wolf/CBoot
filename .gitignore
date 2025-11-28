@@ -6,6 +6,7 @@ build/
 *.bin
 *.map
 *.efi
+*.out
 
 # IDE files
 .vscode/
